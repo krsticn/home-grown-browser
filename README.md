@@ -5,7 +5,7 @@ This project follows the simplified browser implementation described in awsome b
 The books implements the browser in Python, this project does it in JavaScript.
 
 # Prerequisites
-Node >= 22.20.0 ( Probbably some older version would work too )
+Node ^22.20.0
 
 # How
 - Run `node index.js`
