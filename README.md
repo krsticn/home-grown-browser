@@ -8,5 +8,5 @@ The books implements the browser in Python, this project does it in JavaScript.
 Node ^22.20.0
 
 # How
-- Run `node index.js`
+- Run `node index.js https://example.com/`
 
