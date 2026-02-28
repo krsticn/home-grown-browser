@@ -9,4 +9,6 @@ Node ^22.20.0
 
 # How
 - Run `node index.js https://example.com/`
+- Run `node index.js https://example.com:443/`
+- Run `node index.js http://example.com:80/`
 
