@@ -1,6 +1,5 @@
-import { ParseURL } from './lib/parse-url.js';
 import fetchRaw  from './lib/fetch-raw.js';
-// import { ParseBody } from './lib/parse-body.js';
+import { ParseURL } from './lib/parse-url.js';
 import { getParsedResponse } from './lib/parse-response.js';
 
 const url = process.argv[2];
@@ -22,11 +21,7 @@ async function main() {
     })
 
     const parsedResponse = getParsedResponse(responseStr);
-
-    console.log(parsedResponse)
-    
-    // const parsedBody = new ParseBody(parsedResponse.body);
-    // console.log(parsedBody.innerText);
+    console.log(parsedResponse);
   } catch(err) {
     console.error(err);
   }
