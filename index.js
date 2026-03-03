@@ -1,4 +1,4 @@
-import fetchRaw  from './lib/fetch-raw.js';
+import { fetchRaw }  from './lib/fetch-raw.js';
 import { ParseURL } from './lib/parse-url.js';
 import { getParsedResponse } from './lib/parse-response.js';
 
