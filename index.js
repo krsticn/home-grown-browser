@@ -1,7 +1,7 @@
 import { ParseURL } from './lib/parse-url.js';
 import fetchRaw  from './lib/fetch-raw.js';
-import { ParseBody } from './lib/parse-body.js';
-import { ParseResponse } from './lib/parse-response.js';
+// import { ParseBody } from './lib/parse-body.js';
+import { getParsedResponse } from './lib/parse-response.js';
 
 const url = process.argv[2];
 
@@ -21,10 +21,12 @@ async function main() {
       schema:  parsedUrl.schema,
     })
 
-    const parsedResponseStr = new ParseResponse(responseStr);
-    const parsedBody = new ParseBody(parsedResponseStr.body);
+    const parsedResponse = getParsedResponse(responseStr);
 
-    console.log(parsedBody.innerText);
+    console.log(parsedResponse)
+    
+    // const parsedBody = new ParseBody(parsedResponse.body);
+    // console.log(parsedBody.innerText);
   } catch(err) {
     console.error(err);
   }
