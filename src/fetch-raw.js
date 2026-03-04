@@ -14,7 +14,7 @@ function getRequest({ host, path }) {
   reqStr += `Host: ${host}\r\n`;
   reqStr += `Connection: close\r\n`;
   reqStr += `User-Agent: custom-browser\r\n`;
-  reqStr += '\r\n'
+  reqStr += '\r\n';
 
   return reqStr;
 }
@@ -36,26 +36,26 @@ function getSocket({ host, port, schema }) {
   return createConnection({
     port: port,
     host: host,
-  })
+  });
 }
 
 export function fetchRaw({ host, path, port, schema }) {
-  if (!host) throw new Error('host is required')
-  if (!path) throw new Error('path is required')
-  if (!schema) throw new Error('schema is required')
+  if (!host) throw new Error('host is required');
+  if (!path) throw new Error('path is required');
+  if (!schema) throw new Error('schema is required');
 
   return new Promise((resolve, reject) => {
     const request = getRequest({ host, path });
-    const socket = getSocket({ host, port, schema })
+    const socket = getSocket({ host, port, schema });
 
     socket.on('connect', () => socket.write(request));
 
     let streamedResponse = '';
     socket.on('data', (arrayBuffer) => {
-      streamedResponse += getDecodedArrBuff(arrayBuffer)
+      streamedResponse += getDecodedArrBuff(arrayBuffer);
     });
 
     socket.on('error', (error) => reject(error));
     socket.on('close', () => resolve(streamedResponse));
-  })
+  });
 }
