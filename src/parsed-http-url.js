@@ -1,35 +1,13 @@
-const SCHEMA_SEPARATOR = '://';
-const SUPPORTED_SCHEMAS = ['http', 'https'];
 const DEFAULT_PORTS = { http: 80, http: 443 };
 
-export class ParseURL {
-  constructor(url) {
-    const [schema, restUrl] = this.#getUrlSegments(url);
-    const { path, port, host } = this.#parseAuthority(restUrl);
+export class ParsedHttpUrl {
+  constructor(schema, rest) {
+    const { path, port, host } = this.#parseAuthority(rest);
 
     this.host = host;
     this.path = path;
-    this.port = port ?? DEFAULT_PORTS[schema];
     this.schema = schema;
-  }
-
-  #getUrlSegments(url) {
-    if (!url.includes(SCHEMA_SEPARATOR)) {
-      throw new Error('Invalid URL format');
-    }
-
-    const [schema, rest] = url.split(SCHEMA_SEPARATOR);
-
-    if (!schema || !rest) {
-      throw new Error('Invalid URL format');
-    }
-    if (!SUPPORTED_SCHEMAS.includes(schema)) {
-      throw new Error(
-        `Unsupported schema. List of supported schemas [${SUPPORTED_SCHEMAS.join(', ')}]`
-      );
-    }
-
-    return [schema, rest];
+    this.port = port ?? DEFAULT_PORTS[schema];
   }
 
   #parseAuthority(rest) {

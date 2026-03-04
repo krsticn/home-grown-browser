@@ -1,6 +1,6 @@
-import { fetchRaw }  from './lib/fetch-raw.js';
-import { ParseURL } from './lib/parse-url.js';
-import { getParsedResponse } from './lib/parse-response.js';
+import { ParsedUrl } from './src/parsed-url.js';
+// import { fetchRaw } from './src/fetch-raw.js';
+// import { getParsedResponse } from './src/parsed-response.js';
 
 const url = process.argv[2];
 
@@ -11,18 +11,18 @@ if (!url) {
 
 async function main() {
   try {
-    const parsedUrl = new ParseURL(url);
+    const parsedUrl = ParsedUrl.from(url);
 
-    const responseStr = await fetchRaw({
-      port: parsedUrl.port,
-      host: parsedUrl.host,
-      path: parsedUrl.path,
-      schema:  parsedUrl.schema,
-    })
+    // const responseStr = await fetchRaw({
+    //   port: parsedUrl.port,
+    //   host: parsedUrl.host,
+    //   path: parsedUrl.path,
+    //   schema: parsedUrl.schema,
+    // })
 
-    const parsedResponse = getParsedResponse(responseStr);
-    console.log(parsedResponse);
-  } catch(err) {
+    // const parsedResponse = getParsedResponse(responseStr);
+    // console.log(parsedResponse);
+  } catch (err) {
     console.error(err);
   }
 }
